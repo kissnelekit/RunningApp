@@ -1,9 +1,146 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".SettingsActivity">
 
-    <FrameLayout
-        android:id="@+id/settings"
+<!-- AppBarLayout sorgt dafür, dass die Toolbar oben bleibt und auf Scroll-Events reagieren kann -->
+<com.google.android.material.appbar.AppBarLayout
+    android:id="@+id/app_bar_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"> <!-- Oder dein AppTheme.AppBarOverlay -->
+
+    <!-- Toolbar für den Titel und den "Up"-Button (Zurück-Pfeil) -->
+    <!-- Oder dein AppTheme.PopupOverlay -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/return_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="menu"
+        android:src="@drawable/ic_home_black_24dp"
+        app:backgroundTint="?attr/colorPrimary"
+        app:elevation="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@android:color/white" />
+</com.google.android.material.appbar.AppBarLayout>
+
+<!-- NestedScrollView macht den Inhalt darunter scrollbar -->
+<!-- Wichtig: app:layout_behavior="@string/appbar_scrolling_view_behavior" verbindet
+     das ScrollView mit dem AppBarLayout, sodass die Toolbar korrekt reagiert (z.B. bei collapsing Toolbars) -->
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <!-- Dein eigentlicher Einstellungs-Inhalt kommt hier rein -->
+    <!-- Es ist gut, ein einzelnes Kind-Layout im NestedScrollView zu haben, z.B. ein LinearLayout -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Beispiel-Einstellung 1: Switch -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_notifications"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Benachrichtigungen aktivieren"
+            android:textSize="16sp"/>
+
+        <!-- Beispiel-Einstellung 2: EditText in TextInputLayout -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:hint="Benutzername">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_user_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Beispiel-Einstellung 3: Eine Kategorie-Überschrift -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Anzeigeoptionen"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="?attr/colorPrimary" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_dark_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_marginTop="8dp"
+            android:text="Dunkelmodus"
+            android:textSize="16sp"/>
+
+
+        <!-- Füge hier viele weitere Einstellungen hinzu, um das Scrollen zu testen -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="16dp"
+            android:text="Platzhalter Text um Scrollen zu ermöglichen."
+            android:background="#f0f0f0"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Mehr Platzhalter Text."
+            android:background="#e0e0e0"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Noch mehr Platzhalter Text."
+            android:background="#d0d0d0"
+            android:textSize="18sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="Und der letzte Platzhalter Text für diesen Test."
+            android:background="#c0c0c0"
+            android:textSize="18sp"/>
+
+        <!-- Dein Speicher-Button könnte hier am Ende sein, oder du verzichtest darauf,
+             wenn Änderungen direkt beim Umschalten gespeichert werden. -->
+        <Button
+            android:id="@+id/button_save_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:text="Einstellungen speichern" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:layout_anchor="@+id/app_bar_layout"
+        app:layout_anchorGravity="center"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

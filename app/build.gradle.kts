@@ -39,6 +39,16 @@ android {
 }
 
 dependencies {
+    // Kotlin Coroutines (wird für DataStore benötigt)
+    implementation(libs.kotlinx.coroutines.core) // Oder neuere Version
+    implementation(libs.kotlinx.coroutines.android) // Oder neuere Version
+
+    // Lifecycle (nützlich für Coroutine Scopes wie viewModelScope oder lifecycleScope)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx.v262) // Oder neuere Version
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
