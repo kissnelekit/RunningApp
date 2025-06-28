@@ -1,6 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    kotlin("kapt")
+    kotlin("plugin.serialization") version "2.2.0"
 }
 
 android {
@@ -39,10 +43,20 @@ android {
 }
 
 dependencies {
+    //implementation(libs.androidx.)
+    implementation(libs.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.ui.tooling.preview)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.material3.android)       // Coroutines Support
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.play.services.wearable)
     // Kotlin Coroutines (wird für DataStore benötigt)
     implementation(libs.kotlinx.coroutines.core) // Oder neuere Version
     implementation(libs.kotlinx.coroutines.android) // Oder neuere Version
-
+    implementation(libs.jetbrains.kotlinx.serialization.json)
+    implementation(libs.kotlinx.coroutines.play.services)
     // Lifecycle (nützlich für Coroutine Scopes wie viewModelScope oder lifecycleScope)
     implementation(libs.androidx.lifecycle.viewmodel.ktx.v262) // Oder neuere Version
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -61,6 +75,7 @@ dependencies {
     implementation(libs.androidx.preference)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
