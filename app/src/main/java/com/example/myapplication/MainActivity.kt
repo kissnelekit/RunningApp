@@ -11,9 +11,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.ui.create_workout.CreateWorkoutActivity
+import com.example.myapplication.ui.edit_workout.EditWorkoutActivity
 //import com.example.myapplication.ui.workout.CreateWorkoutActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.myapplication.ui.show_workouts.ShowWorkoutsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,10 +48,19 @@ class MainActivity : AppCompatActivity() {
         createWorkoutButton.setOnClickListener {
             openCreateWorkoutActivity()
         }
+        val showWorkoutListButton: Button = findViewById(R.id.show_workout_list)
+        showWorkoutListButton.setOnClickListener {
+            openShowWorkoutListActivity()
+        }
+
 
     }
     private fun openCreateWorkoutActivity() {
-        val intent = Intent(this, CreateWorkoutActivity::class.java)
+        val intent = Intent(this, EditWorkoutActivity::class.java)
+        startActivity(intent)
+    }
+    private fun openShowWorkoutListActivity() {
+        val intent = Intent(this, ShowWorkoutsActivity::class.java)
         startActivity(intent)
     }
     private fun showPopupMenu(view: View) {

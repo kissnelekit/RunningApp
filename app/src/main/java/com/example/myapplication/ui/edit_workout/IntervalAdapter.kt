@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.create_workout
+package com.example.myapplication.ui.edit_workout
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

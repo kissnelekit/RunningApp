@@ -17,7 +17,7 @@
             android:name=".ui.show_workouts.ShowWorkoutsActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.create_workout.CreateWorkoutActivity"
+            android:name=".ui.edit_workout.EditWorkoutActivity"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"

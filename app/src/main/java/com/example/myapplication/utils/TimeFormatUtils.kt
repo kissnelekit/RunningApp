@@ -64,14 +64,14 @@ object TimeFormatUtils {
     }
 
     // Optional: Eine Funktion, die Millisekunden in einen formatierten Dauer-String umwandelt
-    fun formatDurationFromMillis(millis: Long): String {
+    fun formatDurationFromSeconds(millis: Long): String {
         if (millis < 0) return "0s" // Oder Fehlerbehandlung
         var remainingMillis = millis
-        val hours = remainingMillis / (3600 * 1000)
-        remainingMillis %= (3600 * 1000)
-        val minutes = remainingMillis / (60 * 1000)
-        remainingMillis %= (60 * 1000)
-        val seconds = remainingMillis / 1000
+        val hours = remainingMillis / (3600)
+        remainingMillis %= (3600)
+        val minutes = remainingMillis / (60)
+        remainingMillis %= (60)
+        val seconds = remainingMillis
         return formatDurationFromComponents(hours.toInt(), minutes.toInt(), seconds.toInt())
     }
 }

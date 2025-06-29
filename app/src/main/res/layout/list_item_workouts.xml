@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <TextView
+        android:id="@+id/textViewWorkoutName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        tools:text="Morning Run" />
+
+    <TextView
+        android:id="@+id/textViewWorkoutLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        android:textSize="14sp"
+        tools:text="2024-07-28" />
+
+    <TextView
+        android:id="@+id/textViewWorkoutType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItemSecondary"
+        android:textSize="14sp"
+        tools:text="2024-07-28" />
+
+    <!-- You can add more TextViews here to display other workout details -->
+    <!-- e.g., total duration, number of intervals, etc. -->
+
+</LinearLayout>

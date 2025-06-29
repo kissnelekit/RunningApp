@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.create_workout
+package com.example.myapplication.ui.edit_workout
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,17 +8,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.semantics.dismiss
-import androidx.compose.ui.semantics.setText
-import androidx.compose.ui.semantics.text
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
-import com.example.myapplication.utils.TimeFormatUtils
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.textfield.TextInputEditText
-import java.sql.Time
 
 class IntervalEditViewHolder(itemView: View, private val listener: IntervalChangeListener) : RecyclerView.ViewHolder(itemView) {
     private val intervalLabelTextView: TextView = itemView.findViewById(R.id.textViewIntervalLabel)

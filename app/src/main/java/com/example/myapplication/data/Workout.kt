@@ -15,6 +15,8 @@ data class Workout(
     val id: Long=0,
     val name: String,
     val description: String,
+    val date: Long,
     val type: RunningType,
+    val length: Double,
     val intervals: @JvmSuppressWildcards List<Interval>
     )
