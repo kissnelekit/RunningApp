@@ -8,9 +8,11 @@ object TimeFormatUtils {
         var hours = 0
         var minutes = 0
         var seconds = 0
+        val hmsPattern = """(\d{1,2}):(\d{1,2}):(\d{1,2})""".toRegex()
+        val oldPattern = """(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?""".toRegex()
         val cleanDuration = duration.replace(" ", "").lowercase()
-        val pattern = """(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?""".toRegex()
-        val matchResult = pattern.matchEntire(cleanDuration)
+
+        var matchResult = hmsPattern.matchEntire(cleanDuration)
 
         if (matchResult != null) {
             hours = matchResult.groups[1]?.value?.toIntOrNull() ?: 0
@@ -42,21 +44,29 @@ object TimeFormatUtils {
         val hours = seconds / 3600
         val minutes = (seconds % 3600) / 60
         val remainingSeconds = seconds % 60
-        return formatDurationFromComponents(hours.toInt(), minutes.toInt(), remainingSeconds.toInt())
+        return formatDurationToHHMMSS(hours.toInt(), minutes.toInt(), remainingSeconds.toInt())
     }
 
     // Funktion zum Formatieren der Dauer-Komponenten in einen String
-    fun formatDurationFromComponents(hours: Int, minutes: Int, seconds: Int): String {
+    fun formatDurationToHHMMSS(hours: Int, minutes: Int, seconds: Int): String {
+        // Stelle sicher, dass die Werte im gültigen Bereich sind (obwohl parseDurationStringToComponents das schon macht)
+        val h = hours.coerceIn(0, 99)
+        val m = minutes.coerceIn(0, 59)
+        val s = seconds.coerceIn(0, 59)
+        return String.format("%02d:%02d:%02d", h, m, s)
+    }
+
+    // --- Alte Formatierungsfunktion (kannst du behalten, wenn du sie noch woanders brauchst, oder umbenennen/entfernen) ---
+    // Funktion zum Formatieren der Dauer-Komponenten in einen String (z.B. "1h5m30s")
+    fun formatDurationFromComponentsOld(hours: Int, minutes: Int, seconds: Int): String {
         val parts = mutableListOf<String>()
         if (hours > 0) parts.add("${hours}h")
         if (minutes > 0) parts.add("${minutes}m")
-        // Sekunden immer anzeigen, wenn sonst nichts da ist, oder wenn sie nicht 0 sind und andere Teile existieren
         if (seconds > 0 || parts.isEmpty()) {
             parts.add("${seconds}s")
         }
         return if (parts.isEmpty()) "0s" else parts.joinToString("")
     }
-
     // Optional: Eine Funktion, die direkt einen Dauer-String in Millisekunden umwandelt (nützlich für interne Speicherung)
     fun parseDurationStringToMillis(duration: String): Long {
         val (h, m, s) = parseDurationStringToComponents(duration)
@@ -72,6 +82,6 @@ object TimeFormatUtils {
         val minutes = remainingMillis / (60)
         remainingMillis %= (60)
         val seconds = remainingMillis
-        return formatDurationFromComponents(hours.toInt(), minutes.toInt(), seconds.toInt())
+        return formatDurationToHHMMSS(hours.toInt(), minutes.toInt(), seconds.toInt())
     }
 }

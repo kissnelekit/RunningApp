@@ -3,34 +3,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="16dp"
     android:background="?android:attr/selectableItemBackground">
 
-    <TextView
-        android:id="@+id/textViewWorkoutName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItem"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:text="Morning Run" />
+        android:orientation="vertical"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/textViewWorkoutLength"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
-        android:textSize="14sp"
-        tools:text="2024-07-28" />
+        <TextView
+            android:id="@+id/textViewWorkoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceListItem"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Morning Run" />
 
-    <TextView
-        android:id="@+id/textViewWorkoutType"
-        android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textViewWorkoutLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
+            android:textSize="14sp"
+            tools:text="2024-07-28" />
+
+        <TextView
+            android:id="@+id/textViewWorkoutType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
+            android:textSize="14sp"
+            tools:text="2024-07-28" />
+    </LinearLayout>
+
+    <ToggleButton
+        android:id="@+id/toggleButtonOnWatch"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceListItemSecondary"
-        android:textSize="14sp"
-        tools:text="2024-07-28" />
+        android:textOn="Auf Uhr"
+        android:textOff="Nicht auf Uhr"
+        android:focusable="false"
+        android:clickable="true"/>
 
     <!-- You can add more TextViews here to display other workout details -->
     <!-- e.g., total duration, number of intervals, etc. -->

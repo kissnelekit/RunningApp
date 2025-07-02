@@ -124,6 +124,7 @@ class EditWorkoutActivity : AppCompatActivity(), IntervalChangeListener {
             // Du musst hier die Konvertierung und Fehlerbehandlung einbauen.
             try {
                 val durationLong = TimeFormatUtils.parseDurationToSecondsLong(intervalView.duration) // Eigene Funktion nötig!
+                Log.d("CreateWorkout", "durationLong: $durationLong")
                 val minPulseInt = intervalView.minPulse.toIntOrNull() ?: 0
                 val maxPulseInt = intervalView.maxPulse.toIntOrNull() ?: 0
 
@@ -224,6 +225,8 @@ class EditWorkoutActivity : AppCompatActivity(), IntervalChangeListener {
         editTextWorkoutName.setText(workout.name)
         editTextWorkoutDescription.setText(workout.description)
         for (interval in workout.intervals) {
+
+            Log.d("CreateWorkout", "interval: " + TimeFormatUtils.formatDurationFromSeconds(interval.duration))
             intervalAdapter.addInterval(IntervalView(
                 duration = TimeFormatUtils.formatDurationFromSeconds(interval.duration),
                 minPulse = interval.minPulse.toString(),

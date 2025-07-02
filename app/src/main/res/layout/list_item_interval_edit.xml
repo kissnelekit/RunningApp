@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="Dauer (z.B. 30s, 2min, 1km)">
+        android:hint="Duration">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextIntervalDuration"
@@ -54,7 +54,7 @@
             android:inputType="none"
             android:focusable="false"
             android:clickable="true"
-            tools:text="0s"/>
+            tools:text="00:00:00"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 

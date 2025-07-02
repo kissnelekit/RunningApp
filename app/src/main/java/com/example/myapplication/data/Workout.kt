@@ -16,7 +16,8 @@ data class Workout(
     val name: String,
     val description: String,
     val date: Long,
-    val type: RunningType,
+    val type: RunningType = RunningType.TEMPO,
     val length: Double,
-    val intervals: @JvmSuppressWildcards List<Interval>
+    val intervals: @JvmSuppressWildcards List<Interval>,
+    var isOnWear: Boolean = false
     )

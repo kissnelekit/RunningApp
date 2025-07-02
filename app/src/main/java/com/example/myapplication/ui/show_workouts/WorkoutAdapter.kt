@@ -4,16 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.compose.ui.layout.layout
-import androidx.compose.ui.semantics.text
+import android.widget.ToggleButton
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.data.Workout
-import com.example.myapplication.data.WorkoutDAO
 
 
 interface OnWorkoutClickListener {
     fun onWorkoutClick(workout: Workout)
+    fun onToggleWatchStatus(workout: Workout, isChecked: Boolean)
 }
 
 class WorkoutAdapter(
@@ -43,6 +42,7 @@ class WorkoutAdapter(
         private val workoutNameTextView: TextView = itemView.findViewById(R.id.textViewWorkoutName)
         private val workoutDateTextView: TextView = itemView.findViewById(R.id.textViewWorkoutLength)
         private val workoutTypeTextView: TextView = itemView.findViewById(R.id.textViewWorkoutType)
+        private val isOnWereButton: ToggleButton = itemView.findViewById(R.id.toggleButtonOnWatch)
         // Add other TextViews from list_item_workout.xml if you have them
 
         init {
@@ -58,6 +58,10 @@ class WorkoutAdapter(
             workoutNameTextView.text = workout.name
             workoutDateTextView.text = workout.length.toString()
             workoutTypeTextView.text = workout.type.toString()
+            isOnWereButton.isChecked = workout.isOnWear
+            isOnWereButton.setOnCheckedChangeListener { _, isChecked ->
+                listener.onToggleWatchStatus(workout, isChecked)
+            }
         }
     }
 }
